@@ -219,6 +219,13 @@ viewer.addEventListener('urdf-processed', () => {
 
                     input.min = joint.limit.lower * degMultiplier;
                     input.max = joint.limit.upper * degMultiplier;
+                    if (!viewer.ignoreLimits || 
+                        joint.limit.upper === undefined || 
+                        joint.limit.lower === undefined || 
+                        joint.limit.upper === joint.limit.lower){
+                        limitsToggle.classList.toggle('checked');
+                        viewer.ignoreLimits = limitsToggle.classList.contains('checked');
+                    }
                 }
             };
 
