@@ -17,12 +17,12 @@ const viewer = document.querySelector('urdf-viewer');
 const limitsToggle = document.getElementById('ignore-joint-limits');
 const collisionToggle = document.getElementById('collision-toggle');
 const radiansToggle = document.getElementById('radians-toggle');
-const autocenterToggle = document.getElementById('autocenter-toggle');
+// const autocenterToggle = document.getElementById('autocenter-toggle');
 const upSelect = document.getElementById('up-select');
 const sliderList = document.querySelector('#controls ul');
 const controlsel = document.getElementById('controls');
-const controlsToggle = document.getElementById('toggle-controls');
-const animToggle = document.getElementById('do-animate');
+// const controlsToggle = document.getElementById('toggle-controls');
+// const animToggle = document.getElementById('do-animate');
 const hideFixedToggle = document.getElementById('hide-fixed');
 const DEG2RAD = Math.PI / 180;
 const RAD2DEG = 1 / DEG2RAD;
@@ -55,10 +55,10 @@ collisionToggle.addEventListener('click', () => {
     viewer.showCollision = collisionToggle.classList.contains('checked');
 });
 
-autocenterToggle.addEventListener('click', () => {
-    autocenterToggle.classList.toggle('checked');
-    viewer.noAutoRecenter = !autocenterToggle.classList.contains('checked');
-});
+// autocenterToggle.addEventListener('click', () => {
+//     autocenterToggle.classList.toggle('checked');
+//     viewer.noAutoRecenter = !autocenterToggle.classList.contains('checked');
+// });
 
 hideFixedToggle.addEventListener('click', () => {
     hideFixedToggle.classList.toggle('checked');
@@ -71,7 +71,7 @@ hideFixedToggle.addEventListener('click', () => {
 
 upSelect.addEventListener('change', () => viewer.up = upSelect.value);
 
-controlsToggle.addEventListener('click', () => controlsel.classList.toggle('hidden'));
+// controlsToggle.addEventListener('click', () => controlsel.classList.toggle('hidden'));
 
 // watch for urdf changes
 viewer.addEventListener('urdf-change', () => {
@@ -111,25 +111,25 @@ viewer.addEventListener('joint-mouseout', e => {
 
 });
 
-let originalNoAutoRecenter;
-viewer.addEventListener('manipulate-start', e => {
+// let originalNoAutoRecenter;
+// viewer.addEventListener('manipulate-start', e => {
 
-    const j = document.querySelector(`li[joint-name="${ e.detail }"]`);
-    if (j) {
-        j.scrollIntoView({ block: 'nearest' });
-        window.scrollTo(0, 0);
-    }
+//     const j = document.querySelector(`li[joint-name="${ e.detail }"]`);
+//     if (j) {
+//         j.scrollIntoView({ block: 'nearest' });
+//         window.scrollTo(0, 0);
+//     }
 
-    originalNoAutoRecenter = viewer.noAutoRecenter;
-    viewer.noAutoRecenter = true;
+//     originalNoAutoRecenter = viewer.noAutoRecenter;
+//     viewer.noAutoRecenter = true;
 
-});
+// });
 
-viewer.addEventListener('manipulate-end', e => {
+// viewer.addEventListener('manipulate-end', e => {
 
-    viewer.noAutoRecenter = originalNoAutoRecenter;
+//     viewer.noAutoRecenter = originalNoAutoRecenter;
 
-});
+// });
 
 // create the sliders
 viewer.addEventListener('urdf-processed', () => {
@@ -288,12 +288,12 @@ document.addEventListener('WebComponentsReady', () => {
     document.querySelector('li[urdf]').dispatchEvent(new Event('click'));
 
     if (/javascript\/example\/bundle/i.test(window.location)) {
-        viewer.package = '../../../urdf';
+        viewer.package = './urdf';
     }
 
     registerDragEvents(viewer, () => {
         setColor('#263238');
-        animToggle.classList.remove('checked');
+        // animToggle.classList.remove('checked');
         updateList();
     });
 
@@ -331,9 +331,9 @@ const updateAngles = () => {
 
 const updateLoop = () => {
 
-    if (animToggle.classList.contains('checked')) {
-        updateAngles();
-    }
+    // if (animToggle.classList.contains('checked')) {
+    //     updateAngles();
+    // }
 
     requestAnimationFrame(updateLoop);
 
@@ -348,10 +348,10 @@ const updateList = () => {
             const urdf = e.target.getAttribute('urdf');
             const color = e.target.getAttribute('color');
 
-            viewer.up = '-Z';
+            // viewer.up = '-Z';
             document.getElementById('up-select').value = viewer.up;
             viewer.urdf = urdf;
-            animToggle.classList.add('checked');
+            // animToggle.classList.add('checked');
             setColor(color);
 
         });
@@ -364,12 +364,12 @@ updateList();
 
 document.addEventListener('WebComponentsReady', () => {
 
-    animToggle.addEventListener('click', () => animToggle.classList.toggle('checked'));
+    // animToggle.addEventListener('click', () => animToggle.classList.toggle('checked'));
 
-    // stop the animation if user tried to manipulate the model
-    viewer.addEventListener('manipulate-start', e => animToggle.classList.remove('checked'));
+    // // stop the animation if user tried to manipulate the model
+    // viewer.addEventListener('manipulate-start', e => animToggle.classList.remove('checked'));
     viewer.addEventListener('urdf-processed', e => updateAngles());
     updateLoop();
-    viewer.camera.position.set(-5.5, 3.5, 5.5);
+    viewer.camera.position.set(1.0, 0.0, 1.0);
 
 });

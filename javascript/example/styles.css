@@ -135,19 +135,29 @@ input:focus {
     margin: 20px;
 }
 
+#website-header {
+    /* text-overflow: ellipsis; */
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+}
+
+#menu a {
+    color: #c8c8c8; /* Set link color to dark gray */
+}
+
 #urdf-options {
     text-overflow: ellipsis;
 }
 
 #urdf-options li {
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.75;
     font-size: 20px;
     font-weight: 100;
 }
 
 #urdf-options li:hover {
-    opacity: 0.75;
+    opacity: 1.0;
 }
 
 #controls {
@@ -164,38 +174,38 @@ input:focus {
     margin: 5px 0;
 }
 
-#controls #toggle-controls {
+/* #controls #toggle-controls {
     margin-top: 0;
     margin-bottom: 10px;
     text-align: right;
     transition: 0.1s opacity linear;
     border-top: 1px solid white;
-}
+} */
 
-#controls #toggle-controls:hover {
+/* #controls #toggle-controls:hover {
     text-decoration: underline;
     cursor: pointer;
-}
+} */
 
-#controls #toggle-controls:before {
+/* #controls #toggle-controls:before {
     content: "hide controls";
     font-size: 12px;
     font-weight: normal;
-}
+} */
 
 /* hidden state */
-#controls.hidden #toggle-controls:before {
+/* #controls.hidden #toggle-controls:before {
     content: "show controls";
-}
+} */
 
 
-#controls.hidden > *:not(#toggle-controls) {
+/* #controls.hidden > *:not(#toggle-controls) {
     display: none;
-}
+} */
 
-#controls.hidden #toggle-controls {
+/* #controls.hidden #toggle-controls {
     opacity: 0.5;
-}
+} */
 
 /* list of joint sliders */
 #controls ul {
