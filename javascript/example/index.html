@@ -18,13 +18,16 @@
                 Reference: <a href="https://github.com/gkjohnson/urdf-loaders">gkjohnson/urdf-loaders</a><br/>
                 Modify: <a href="https://github.com/fan-ziqi/urdf-loaders">fan-ziqi/urdf-loaders</a>
                 Author: <a href="https://github.com/fan-ziqi">fan-ziqi</a><br/>
-                <br/>
-                Drag and drop model folders(Chrome Only)<br/>
+                <!-- <br/>
+                You can drag and drop your own model folders (Chrome Only)<br/>
                 The common folder structure includes two folders:<br/>
-                urdf and meshes.<br/>
+                urdf and meshes.<br/> -->
             </ul>
 
-            <h2>Example models</h2>
+            <h2>Example models<div id="current-urdf-name" style="font-size: 18px; color: #ffffff;">Current model: None</div></h2>
+            Please wait patiently for resources to load after clicking<br/>
+            
+            <br/>
             <ul id="urdf-options">
                 <li urdf="./urdf/gr1t1/urdf/gr1t1.urdf" color="#263238">Fourier GR1T1</li>
                 <li urdf="./urdf/gr1t2/urdf/gr1t2.urdf" color="#263238">Fourier GR1T2</li>
@@ -34,9 +37,6 @@
                 <li urdf="./urdf/anymal_c/urdf/anymal_c.urdf" color="#263238">Anymal C</li>
                 <li urdf="./urdf/cyberdog2/urdf/cyberdog2.urdf" color="#263238">Xiaomi Cyberdog2</li>
                 <li urdf="./urdf/jaka/urdf/jaka_zu3.urdf" color="#263238">Jaka zu3</li>
-                <!-- <li urdf="./urdf/jaka/urdf/jaka_zu7.urdf" color="#263238">Jaka zu7</li>
-                <li urdf="./urdf/jaka/urdf/jaka_zu12.urdf" color="#263238">Jaka zu12</li>
-                <li urdf="./urdf/jaka/urdf/jaka_zu18.urdf" color="#263238">Jaka zu18</li> -->
             </ul>
 
             <h2>Control</h2>
@@ -64,6 +64,22 @@
                 </label>
                 <ul></ul>
             </div>
+        </div>
+        <div id="loading-message" style="position: absolute; top: 50%; left: 65%; transform: translate(-50%, -50%); font-size: 20px; color: #b7b7b7;">
+            You can drag and drop your own model folders here<br/><br/>
+            The model folder structure should be:<br/>
+            your_model_dir/<br/>
+            ├── meshes/<br/>
+            │   ├── your_model_part1.dae<br/>
+            │   ├── your_model_part2.stl<br/>
+            │   └── ...<br/>
+            ├── urdf/<br/>
+            │   ├── your_model1.urdf<br/>
+            │   ├── your_model2.urdf<br/>
+            │   └── ...<br/>
+            The path of stl/dae should be relative, such as "../meshes/part1.dae"<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;rather than "package://your_model/meshes/part1.dae"<br/>
+            Note: Chrome Only<br/>
         </div>
         <urdf-viewer up="+Z" display-shadow tabindex="0"></urdf-viewer>
 

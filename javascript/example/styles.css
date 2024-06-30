@@ -319,3 +319,9 @@ input:focus {
         display: none;
     }
 }
+
+@media (max-width: 1000px) {
+    #loading-message {
+        display: none;
+    }
+}
