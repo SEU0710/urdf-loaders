@@ -130,6 +130,7 @@ viewer.addEventListener('joint-mouseout', e => {
 //     viewer.noAutoRecenter = originalNoAutoRecenter;
 
 // });
+viewer.noAutoRecenter = true;
 
 // create the sliders
 viewer.addEventListener('urdf-processed', () => {
@@ -263,7 +264,16 @@ document.addEventListener('WebComponentsReady', () => {
             case 'dae':
                 new ColladaLoader(manager).load(
                     path,
-                    result => done(result.scene),
+                    // result => done(result.scene),
+                    result => {
+                        // Remove lights from the loaded scene
+                        result.scene.traverse(child => {
+                            if (child.isLight) {
+                                result.scene.remove(child);
+                            }
+                        });
+                        done(result.scene);
+                    },
                     null,
                     err => done(null, err),
                 );
@@ -300,34 +310,34 @@ document.addEventListener('WebComponentsReady', () => {
 });
 
 // init 2D UI and animation
-const updateAngles = () => {
+// const updateAngles = () => {
 
-    if (!viewer.setJointValue) return;
+//     if (!viewer.setJointValue) return;
 
-    // reset everything to 0 first
-    const resetJointValues = viewer.angles;
-    for (const name in resetJointValues) resetJointValues[name] = 0;
-    viewer.setJointValues(resetJointValues);
+//     // reset everything to 0 first
+//     const resetJointValues = viewer.angles;
+//     for (const name in resetJointValues) resetJointValues[name] = 0;
+//     viewer.setJointValues(resetJointValues);
 
-    // animate the legs
-    const time = Date.now() / 3e2;
-    for (let i = 1; i <= 6; i++) {
+//     // animate the legs
+//     const time = Date.now() / 3e2;
+//     for (let i = 1; i <= 6; i++) {
 
-        const offset = i * Math.PI / 3;
-        const ratio = Math.max(0, Math.sin(time + offset));
+//         const offset = i * Math.PI / 3;
+//         const ratio = Math.max(0, Math.sin(time + offset));
 
-        viewer.setJointValue(`HP${ i }`, THREE.MathUtils.lerp(30, 0, ratio) * DEG2RAD);
-        viewer.setJointValue(`KP${ i }`, THREE.MathUtils.lerp(90, 150, ratio) * DEG2RAD);
-        viewer.setJointValue(`AP${ i }`, THREE.MathUtils.lerp(-30, -60, ratio) * DEG2RAD);
+//         viewer.setJointValue(`HP${ i }`, THREE.MathUtils.lerp(30, 0, ratio) * DEG2RAD);
+//         viewer.setJointValue(`KP${ i }`, THREE.MathUtils.lerp(90, 150, ratio) * DEG2RAD);
+//         viewer.setJointValue(`AP${ i }`, THREE.MathUtils.lerp(-30, -60, ratio) * DEG2RAD);
 
-        viewer.setJointValue(`TC${ i }A`, THREE.MathUtils.lerp(0, 0.065, ratio));
-        viewer.setJointValue(`TC${ i }B`, THREE.MathUtils.lerp(0, 0.065, ratio));
+//         viewer.setJointValue(`TC${ i }A`, THREE.MathUtils.lerp(0, 0.065, ratio));
+//         viewer.setJointValue(`TC${ i }B`, THREE.MathUtils.lerp(0, 0.065, ratio));
 
-        viewer.setJointValue(`W${ i }`, window.performance.now() * 0.001);
+//         viewer.setJointValue(`W${ i }`, window.performance.now() * 0.001);
 
-    }
+//     }
 
-};
+// };
 
 const updateLoop = () => {
 
@@ -368,7 +378,7 @@ document.addEventListener('WebComponentsReady', () => {
 
     // // stop the animation if user tried to manipulate the model
     // viewer.addEventListener('manipulate-start', e => animToggle.classList.remove('checked'));
-    viewer.addEventListener('urdf-processed', e => updateAngles());
+    // viewer.addEventListener('urdf-processed', e => updateAngles());
     updateLoop();
     viewer.camera.position.set(1.0, 0.0, 1.0);
 

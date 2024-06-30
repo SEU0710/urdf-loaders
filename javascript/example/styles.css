@@ -132,6 +132,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     max-height: 100%;
+    max-width: 450px;
     margin: 20px;
 }
 
@@ -147,6 +148,10 @@ input:focus {
 
 #urdf-options {
     text-overflow: ellipsis;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
 }
 
 #urdf-options li {
@@ -154,10 +159,22 @@ input:focus {
     opacity: 0.75;
     font-size: 20px;
     font-weight: 100;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 #urdf-options li:hover {
     opacity: 1.0;
+}
+
+#button {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.toggle {
+    width: 50%;
+    box-sizing: border-box;
 }
 
 #controls {

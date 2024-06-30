@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="utf-8"/>
 
-        <title>URDF Viewer Example</title>
+        <title>Robot URDF Viewer</title>
 
         <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-bundle.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet"/>
@@ -14,30 +14,43 @@
     <body tabindex="0">
         <div id="menu">
             <ul id="website-header">
-                <h1>URDF Viewer</h1>
+                <h1>Robot URDF Viewer</h1>
                 Reference: <a href="https://github.com/gkjohnson/urdf-loaders">gkjohnson/urdf-loaders</a><br/>
-                Modify by <a href="https://github.com/fan-ziqi">fan-ziqi</a><br/>
+                Modify: <a href="https://github.com/fan-ziqi/urdf-loaders">fan-ziqi/urdf-loaders</a>
+                Author: <a href="https://github.com/fan-ziqi">fan-ziqi</a><br/>
                 <br/>
                 Drag and drop model folders(Chrome Only)<br/>
                 The common folder structure includes two folders:<br/>
                 urdf and meshes.<br/>
             </ul>
 
+            <h2>Example models</h2>
             <ul id="urdf-options">
-                <h2>Example models</h2>
-                <li urdf="./urdf/GR1T1/urdf/GR1T1.urdf" color="#263238">GR1T1</li>
-                <li urdf="./urdf/GR1T2/urdf/GR1T2.urdf" color="#263238">GR1T2</li>
+                <li urdf="./urdf/gr1t1/urdf/gr1t1.urdf" color="#263238">Fourier GR1T1</li>
+                <li urdf="./urdf/gr1t2/urdf/gr1t2.urdf" color="#263238">Fourier GR1T2</li>
+                <li urdf="./urdf/a1/urdf/a1.urdf" color="#263238">Unitree A1</li>
+                <li urdf="./urdf/go2/urdf/go2.urdf" color="#263238">Unitree Go2</li>
+                <li urdf="./urdf/h1/urdf/h1_with_hand.urdf" color="#263238">Unitree H1</li>
+                <li urdf="./urdf/anymal_c/urdf/anymal_c.urdf" color="#263238">Anymal C</li>
+                <li urdf="./urdf/cyberdog2/urdf/cyberdog2.urdf" color="#263238">Xiaomi Cyberdog2</li>
+                <li urdf="./urdf/jaka/urdf/jaka_zu3.urdf" color="#263238">Jaka zu3</li>
+                <!-- <li urdf="./urdf/jaka/urdf/jaka_zu7.urdf" color="#263238">Jaka zu7</li>
+                <li urdf="./urdf/jaka/urdf/jaka_zu12.urdf" color="#263238">Jaka zu12</li>
+                <li urdf="./urdf/jaka/urdf/jaka_zu18.urdf" color="#263238">Jaka zu18</li> -->
             </ul>
 
-            <div id="controls">
-                <div id="toggle-controls"></div>
-                
+            <h2>Control</h2>
+            <div id="button">
                 <div id="ignore-joint-limits" class="toggle">Ignore Joint Limits</div>
                 <div id="hide-fixed" class="toggle checked">Hide Fixed Joints</div>
                 <div id="radians-toggle" class="toggle">Use Radians</div>
                 <!-- <div id="autocenter-toggle" class="toggle checked">Autocenter</div> -->
                 <div id="collision-toggle" class="toggle">Show Collision</div>
                 <!-- <div id="do-animate" class="toggle checked">Animate Joints</div> -->
+            </div>
+
+            <div id="controls">
+                <div id="toggle-controls"></div>
                 <label>
                     Up Axis
                     <select id="up-select">
